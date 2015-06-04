@@ -9,11 +9,7 @@
 <head>
 
 <title>My JSP 'index.jsp' starting page</title>
-
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 </head>
 
 <body>
