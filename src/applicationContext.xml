@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+	<context:annotation-config />
+	<aop:aspectj-autoproxy />
+
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+		/> <property name="url" value="jdbc:sqlserver://localhost:1433;DatabaseName=bbs" 
+		/> <property name="username" value="sa" /> <property name="password" value="1234" 
+		/> </bean> -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:sqlserver://localhost:1433;DatabaseName=bbs</value>
+		</property>
+		<property name="username">
+			<value>sa</value>
+		</property>
+		<property name="password">
+			<value>1234</value>
+		</property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:/com/bbs/domain/Posts.hbm.xml</value>
+				<value>classpath:/com/bbs/domain/Reply.hbm.xml</value>
+				<value>classpath:/com/bbs/domain/UserInfo.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="userinfoDao" class="com.bbs.daos.UserInfoDaoImpl" />
+	<bean id="userinfoService" class="com.bbs.services.UserInfoServiceImpl" />
+	<bean id="userinfoAct" class="com.bbs.actions.UserInfoAction" />
+
+	<bean id="postsDao" class="com.bbs.daos.PostsDaoImpl" />
+	<bean id="postsService" class="com.bbs.services.PostsServiceImpl" />
+	<bean id="postsAct" class="com.bbs.actions.PostsAction" />
+
+	<bean id="replyDao" class="com.bbs.daos.ReplyDaoImpl" />
+	<bean id="replyService" class="com.bbs.services.ReplyServiceImpl" />
+	<bean id="replyAct" class="com.bbs.actions.ReplyAction" />
+
+	<bean id="aspectUIA" class="com.bbs.actions.AspectUserInfoAction"></bean>
+</beans>
