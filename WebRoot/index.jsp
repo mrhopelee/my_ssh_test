@@ -13,7 +13,7 @@
 </head>
 
 <body>
-
+1
 	<a href="index.jsp">主页</a>
 
 	<s:if test="#session.user!=null">
