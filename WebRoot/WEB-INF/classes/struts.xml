@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="default" extends="struts-default" namespace="/">
+		<!-- UserInfo Action -->
+		<action name="userinfoRegister" class="userinfoAct" method="register">
+			<result name="success">/index.jsp</result>
+			<result name="input">/register.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="userinfoLogin" class="userinfoAct" method="login">
+			<result name="success">/index.jsp</result>
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- <action name="getUserInfo" class="userinfoAct" method="getUI"> <result 
+			name="success">/userinfo.jsp</result> <result name="input">/userinfo.jsp</result> 
+			<result name="error">/error.jsp</result> </action> -->
+		<action name="userinfoUpdate" class="userinfoAct" method="update">
+			<result name="success">/userinfo.jsp</result>
+			<result name="input">/userinfo.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="userinfoQuit" class="userinfoAct" method="quit">
+			<result name="success">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<!-- Posts Action -->
+		<action name="postsSetSession" class="postsAct" method="setsession">
+			<result name="success">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="postsPublish" class="postsAct" method="publish">
+			<result name="success">/index.jsp</result>
+			<result name="input">/publish.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="postsSee" class="postsAct" method="see">
+			<result name="success">/seeposts.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="postsDelete" class="postsAct" method="delete">
+			<result name="success">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<!-- Reply Action -->
+		<action name="replySetSession" class="replyAct" method="setsession">
+			<result name="success">/seeposts.jsp</result>
+			<result name="input">/seeposts.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="replyPublish" class="replyAct" method="publish">
+			<result name="success">/seeposts.jsp</result>
+			<result name="input">/seeposts.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="replyDelete" class="replyAct" method="delete">
+			<result name="success">/seeposts.jsp</result>
+			<result name="input">/seeposts.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+</struts>    
